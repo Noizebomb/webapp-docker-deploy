@@ -6,15 +6,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 
-      - name: Deploy in EC2
+      - name: ssh in EC2
         env:
             PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
             HOSTNAME : ${{ secrets.HOSTNAME }}
             USER_NAME : ${{ secrets.USER_NAME }}
             
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -tt -i private_key ${USER_NAME}@${HOSTNAME}
+          mkdir -p ~/.ssh/
+          echo "$AWS_PRIVATE_KEY" > ~/.ssh/id_rsa.key
+          chmod 600 ~/.ssh/id_rsa.key
+          cat >>~/.ssh/config <<END
+          Host 52.37.244.139
+            HostName $HOSTNAME
+            User $USER_NAME
+            IdentityFile ~/.ssh/id_rsa.key
+            StrictHostKeyChecking no
+          END
           
             #Now we have got the access of EC2 and we will start the deploy .
             cd webapp-docker-deploy
