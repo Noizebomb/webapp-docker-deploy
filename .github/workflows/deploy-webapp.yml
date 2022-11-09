@@ -25,7 +25,7 @@ jobs:
           END
           
             #Now we have got the access of EC2 and we will start the deploy .
-            cd webapp-docker-deploy
-            git pull
+            mkdir web-app-docker
+            cd web-app-docker
             docker pull noizebomb/springboot-app-2:0.0.1
             docker-compose up -d
