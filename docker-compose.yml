@@ -1,4 +1,4 @@
-version: "0.0.3"
+version: "3"
 services:
   java-app:
     image: noizebomb/springboot-app-2:0.0.1
