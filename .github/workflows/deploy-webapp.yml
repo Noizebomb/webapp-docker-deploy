@@ -5,13 +5,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Start AWS EC2
-        run: |
-          aws ec2 start-instances --instance-ids ${{secrets.AWS_EC2_INSTANCE_ID }}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
       - uses: actions/checkout@v2 
       - name: ssh in EC2
         env:
@@ -31,8 +24,8 @@ jobs:
             StrictHostKeyChecking no
           END
           
-            #Now we have got the access of EC2 and we will start the deploy .
             mkdir web-app-docker
             cd web-app-docker
+            
             docker pull noizebomb/springboot-app-2:0.0.1
             docker-compose up -d
