@@ -26,6 +26,5 @@ jobs:
           
             mkdir web-app-docker
             cd web-app-docker
-            
-            docker pull noizebomb/springboot-app-2:0.0.1
+            git pull git@github.com:Noizebomb/webapp-docker-deploy.git
             docker-compose up -d
