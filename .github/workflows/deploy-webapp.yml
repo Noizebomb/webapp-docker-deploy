@@ -14,4 +14,11 @@ jobs:
           key: ${{ secrets.KEY }}
           source: "docker-compose.yml"
           target: "/home/ubuntu/"
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: 52.37.244.139
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: docker-compose up -d
       
