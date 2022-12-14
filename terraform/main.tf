@@ -64,7 +64,7 @@ resource "aws_security_group" "tf-sec-grp" {
 
 
 resource "aws_instance" "terraform-project" {
-  count = 2
+  count = 0
   ami = lookup(var.awsprops, "ami")
   instance_type = lookup(var.awsprops, "itype")
   subnet_id = lookup(var.awsprops, "subnet")
