@@ -88,8 +88,3 @@ resource "aws_instance" "terraform-project" {
 
   depends_on = [ aws_security_group.tf-sec-grp ]
 }
-
-
-output "ec2instance" {
-  value = aws_instance.terraform-project.*.public_ip
-}
