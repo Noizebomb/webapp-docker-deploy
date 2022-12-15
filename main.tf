@@ -1,21 +1,29 @@
 terraform {
+  cloud {
+    organization = "myemailis319"
+    workspaces {
+      name = "webapp-docker-deploy"
+    }
+  }
+
+  required_version = ">= 1.2.0"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 4.16"
     }
   }
-
-  required_version = ">= 1.2.0"
 }
+
 variable "awsprops" {
     type = map
     default = {
     region = "us-west-2"
     ami = "ami-0fd3231344475acf9"
     itype = "t2.micro"
-    vpc = "vpc-0e8a51820ff9f00ac"
-    subnet = "subnet-0ce5f4511388b765b"
+    vpc = "vpc-02f12fd369e6941b4"
+    subnet = "subnet-0c56bb13ba3a37977"
     publicip = true
     keyname = "oregon-keypair"
     secgroupname = "tf-sec-grp"
@@ -64,7 +72,7 @@ resource "aws_security_group" "tf-sec-grp" {
 
 
 resource "aws_instance" "terraform-project" {
-  count = 0
+  count = 1
   ami = lookup(var.awsprops, "ami")
   instance_type = lookup(var.awsprops, "itype")
   subnet_id = lookup(var.awsprops, "subnet")
@@ -87,4 +95,8 @@ resource "aws_instance" "terraform-project" {
   }
 
   depends_on = [ aws_security_group.tf-sec-grp ]
+}
+
+output "ec2instance" {
+  value = aws_instance.terraform-project.*.public_ip
 }
