@@ -1,19 +1,12 @@
 terraform {
-  cloud {
-    organization = "myemailis319"
-    workspaces {
-      name = "webapp-docker-deploy"
-    }
-  }
-
-  required_version = ">= 1.2.0"
-
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 4.16"
     }
   }
+
+  required_version = ">= 1.2.0"
 }
 
 variable "awsprops" {
