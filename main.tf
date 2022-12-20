@@ -20,6 +20,7 @@ variable "awsprops" {
     publicip = true
     keyname = "oregon-keypair"
     secgroupname = "tf-sec-grp"
+    ec2instance = "(terraform output ec2instance)"
   }
 }
 
