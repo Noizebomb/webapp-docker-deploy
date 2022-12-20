@@ -68,6 +68,7 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.2.0
+        terraform_wrapper: false
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
@@ -76,6 +77,15 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan -input=false
+    
+    - name: output standout
+    - run: echo ${{ steps.plan.outputs.stdout }}
+    
+    - name: output stderr
+    - run: echo ${{ steps.plan.outputs.stderr }}
+    
+    - name: output exitcode
+    - run: echo ${{ steps.plan.outputs.exitcode }}
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
