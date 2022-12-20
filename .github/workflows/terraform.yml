@@ -92,10 +92,6 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/checkout@master
       - name: copy file via ssh key
         uses: appleboy/scp-action@master
