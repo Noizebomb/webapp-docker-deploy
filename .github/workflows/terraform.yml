@@ -60,7 +60,7 @@ jobs:
       with:          
         host: 35.92.1.145
         username: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        key: ${{ secrets.AWS_PRIVATE_KEY }}
         source: "docker-compose.yml"
         target: "/home/ubuntu/"
 
@@ -69,5 +69,5 @@ jobs:
       with:
         host: 35.92.1.145
         username: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        key: ${{ secrets.AWS_PRIVATE_KEY }}
         script: docker-compose up -d
