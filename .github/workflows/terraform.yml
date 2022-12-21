@@ -55,20 +55,19 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
 
-      - uses: actions/checkout@master
-      - name: copy file via ssh key
-        uses: appleboy/scp-action@master
-        with:
-          host: 35.92.1.145
-          username: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          source: "docker-compose.yml"
-          target: "/home/ubuntu/"
+    - name: copy file via ssh key
+      uses: appleboy/scp-action@master
+      with:          
+        host: 35.92.1.145
+        username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        source: "docker-compose.yml"
+        target: "/home/ubuntu/"
 
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: 35.92.1.145
-          username: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          script: docker-compose up -d
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: 35.92.1.145
+        username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        script: docker-compose up -d
