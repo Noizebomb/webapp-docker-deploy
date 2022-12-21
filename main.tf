@@ -18,7 +18,7 @@ variable "awsprops" {
     vpc = "vpc-02f12fd369e6941b4"
     subnet = "subnet-0c56bb13ba3a37977"
     publicip = true
-    keyname = "oregon-keypair"
+    keyname = "oregon-ed25519-key"
     secgroupname = "tf-sec-grp"
     ec2instance = "(terraform output ec2instance)"
   }
