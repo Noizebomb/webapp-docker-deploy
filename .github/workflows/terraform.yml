@@ -55,6 +55,9 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
 
+    - name: Call for output as a variable
+      run: terraform output ec2instance
+
     - name: copy file via ssh key
       uses: appleboy/scp-action@master
       with:          
