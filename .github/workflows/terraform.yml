@@ -44,11 +44,14 @@ jobs:
       run: terraform plan -input=false
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve -input=false -no-color -RAW | tee output.txt
+      run: terraform apply -auto-approve -input=false -no-color 
+
+    - name: Output as a variable
+      run: terraform output -raw EC2INSTANCE | tee output.txt
 
     - name: Set IP address as environment variable
       run: |
-            EC2INSTANCE=$(grep "EC2INSTANCE" output.txt | awk '{print $3}')
+            EC2INSTANCE=$(grep 1 "EC2INSTANCE" output.txt | awk '{print $3}')
             echo "EC2INSTANCE"=${EC2INSTANCE} >> $GITHUB_ENV
 
     - name: copy file via ssh key
