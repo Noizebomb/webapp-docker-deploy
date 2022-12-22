@@ -47,7 +47,7 @@ jobs:
       run: terraform apply -auto-approve -input=false -no-color 
 
     - name: Output as a variable
-      run: terraform output -raw EC2INSTANCE | tee output.txt
+      run: terraform output -json EC2INSTANCE | jq -r '.[0]' | tee output.txt
 
     - name: Set IP address as environment variable
       run: |
