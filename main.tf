@@ -20,7 +20,7 @@ variable "awsprops" {
     publicip = true
     keyname = "oregon-keypair"
     secgroupname = "tf-sec-grp"
-    ec2instance = "(terraform output ec2instance)"
+    ip_address = "(terraform output ip_address)"
   }
 }
 
@@ -91,6 +91,6 @@ resource "aws_instance" "terraform-project" {
   depends_on = [ aws_security_group.tf-sec-grp ]
 }
 
-output "ec2instance" {
+output "ip_address" {
   value = aws_instance.terraform-project.*.public_ip
 }

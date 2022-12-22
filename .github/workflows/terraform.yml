@@ -44,15 +44,22 @@ jobs:
       run: terraform plan -input=false
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve -input=false
+      run: terraform apply -auto-approve -input=false -no-color > output.txt
 
-    - name: Call for output
-      run: terraform output ec2instance
+    - name: Set IP address as environment variable
+      run: |
+            IP_ADDRESS=$(grep "ip_address" output.txt | awk '{print $3}')
+            echo "IP_ADDRESS=${IP_ADDRESS}" >> $GITHUB_ENV
 
+#    - name: Call for ec2instance as a variable
+      run: 
+            output=$(terraform output ec2instance)
+            echo $output
+#
     - name: copy file via ssh key
       uses: appleboy/scp-action@master
       with:          
-        host: 35.93.119.43
+        host: ${{ env.IP_ADDRESS }}
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         source: "docker-compose.yml"
@@ -61,7 +68,7 @@ jobs:
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
-        host: 35.93.119.43
+        host: ${{ env.IP_ADDRESS }}
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: | 
