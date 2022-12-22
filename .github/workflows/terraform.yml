@@ -46,13 +46,13 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
 
-    - name: Call for output as a variable
-      run: terraform output ec2instance
+    - name: Call for output
+      run: terraform output -RAW ec2instance
 
     - name: copy file via ssh key
       uses: appleboy/scp-action@master
       with:          
-        host: 35.91.138.80
+        host: 35.93.119.43
         username: ${{ secrets.AWS_ACCESS_KEY_ID }}
         key: ${{ secrets.SSH_KEY }}
         source: "docker-compose.yml"
@@ -61,7 +61,7 @@ jobs:
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
-        host: 35.91.138.80
+        host: 35.93.119.43
         username: ${{ secrets.AWS_ACCESS_KEY_ID }}
         key: ${{ secrets.SSH_KEY }}
         script: docker-compose up -d
