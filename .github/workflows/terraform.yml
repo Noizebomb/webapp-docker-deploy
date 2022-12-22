@@ -53,7 +53,7 @@ jobs:
       uses: appleboy/scp-action@master
       with:          
         host: 35.93.119.43
-        username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         source: "docker-compose.yml"
         target: "/home/ubuntu/"
@@ -62,6 +62,6 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: 35.93.119.43
-        username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: docker-compose up -d
