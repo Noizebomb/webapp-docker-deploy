@@ -44,7 +44,7 @@ jobs:
       run: terraform plan -input=false
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve -input=false -no-color > output.txt
+      run: terraform apply -auto-approve -input=false -no-color | tee output.txt
 
     - name: Set IP address as environment variable
       run: |
