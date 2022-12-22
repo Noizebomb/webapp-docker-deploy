@@ -51,11 +51,6 @@ jobs:
             IP_ADDRESS=$(grep "ip_address" output.txt | awk '{print $3}')
             echo "IP_ADDRESS=${"ip_address"}" >> $GITHUB_ENV
 
-#    - name: Call for ec2instance as a variable
-      run: 
-            output=$(terraform output ec2instance)
-            echo $output
-#
     - name: copy file via ssh key
       uses: appleboy/scp-action@master
       with:          
