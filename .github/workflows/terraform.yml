@@ -42,15 +42,6 @@ jobs:
 
     - name: Terraform Plan
       run: terraform plan -input=false
-    
-    - name: output standout
-      run: echo ${{ steps.plan.outputs.stdout }}
-    
-    - name: output stderr
-      run: echo ${{ steps.plan.outputs.stderr }}
-    
-    - name: output exitcode
-      run: echo ${{ steps.plan.outputs.exitcode }}
 
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
