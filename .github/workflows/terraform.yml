@@ -49,7 +49,7 @@ jobs:
     - name: Set IP address as environment variable
       run: |
             IP_ADDRESS=$(grep "ip_address" output.txt | awk '{print $3}')
-            echo "IP_ADDRESS=${IP_ADDRESS}" >> $GITHUB_ENV
+            echo "IP_ADDRESS=${"ip_address"}" >> $GITHUB_ENV
 
 #    - name: Call for ec2instance as a variable
       run: 
