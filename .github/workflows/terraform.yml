@@ -64,4 +64,6 @@ jobs:
         host: 35.93.119.43
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
-        script: docker-compose up -d
+        script: | 
+                 sudo apt install docker -y
+                 docker-compose up -d
