@@ -48,13 +48,13 @@ jobs:
 
     - name: Set IP address as environment variable
       run: |
-            IP_ADDRESS=$(grep "ip_address" output.txt | awk '{print $3}')
-            echo "IP_ADDRESS=${"IP_ADDRESS"}" >> $GITHUB_ENV
+            EC2INSTANCE=$(grep "ip_address" output.txt | awk '{print $3}')
+            echo "EC2INSTANCE"=${EC2INSTANCE} >> $GITHUB_ENV
 
     - name: copy file via ssh key
       uses: appleboy/scp-action@master
       with:          
-        host: ${{ env.IP_ADDRESS }}
+        host: ${{ env.EC2INSTANCE }}
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         source: "docker-compose.yml"
@@ -63,7 +63,7 @@ jobs:
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ env.IP_ADDRESS }}
+        host: ${{ env.EC2INSTANCE }}
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: | 
