@@ -48,7 +48,7 @@ jobs:
 
     - name: Set IP address as environment variable
       run: |
-            EC2INSTANCE=$(grep "ip_address" output.txt | awk '{print $3}')
+            EC2INSTANCE=$(grep "EC2INSTANCE" output.txt | awk '{print $3}')
             echo "EC2INSTANCE"=${EC2INSTANCE} >> $GITHUB_ENV
 
     - name: copy file via ssh key
