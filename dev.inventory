@@ -1,6 +1,6 @@
 
 [web-app-nodes]
-
+34.211.241.103
 
 [all:vars]
 ansible_user=ubuntu
