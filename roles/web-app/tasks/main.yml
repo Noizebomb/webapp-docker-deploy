@@ -1,0 +1,9 @@
+- name: copy docker-compose file to ec2
+  copy:
+    src: “{{ item }}”
+    dest: .
+    owner: root
+    mode: 664
+  with_fileglob:
+   - docker-compose.yml
+
