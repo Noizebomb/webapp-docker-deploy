@@ -15,8 +15,8 @@ variable "awsprops" {
     region = "us-west-2"
     ami = "ami-0fd3231344475acf9"
     itype = "t2.micro"
-    vpc = "vpc-02f12fd369e6941b4"
-    subnet = "subnet-0c56bb13ba3a37977"
+    vpc = "vpc-03710dffe73ed351b"
+    subnet = "subnet-05db3f39b720c2e14"
     publicip = true
     keyname = "oregon-keypair"
     secgroupname = "tf-sec-grp"

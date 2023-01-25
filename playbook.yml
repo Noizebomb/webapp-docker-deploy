@@ -1,0 +1,7 @@
+---
+- name: Deploy Web App
+  hosts: web-app-nodes
+  roles:
+    - web-app
+  tags: web-app
+  become: true
