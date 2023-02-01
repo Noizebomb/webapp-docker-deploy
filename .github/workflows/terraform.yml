@@ -8,7 +8,7 @@ on:
 permissions:
   contents: read
 
-jobs:
+build:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
@@ -55,10 +55,12 @@ jobs:
       run: |
             EC2INSTANCE=$(cat output.txt)
             echo "EC2INSTANCE"=${EC2INSTANCE} >> $GITHUB_ENV
-            echo "EC2INSTANCE"=${EC2INSTANCE} >> dev.inventory
-    
+
+    - name: add IP adress to dev.inventory file
+      run: cat output.txt > dev.inventory
+
     - name: install ansible
       run: sudo apt install ansible -y
 
     - name: Run playbook
-      run: ansible-playbook -i dev.inventory --private-key key.pem playbook.yml -vv
+      run: ansible-playbook -i dev.inventory --private-key key.pem playbook.yml -vvvv

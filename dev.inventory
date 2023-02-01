@@ -1,8 +1,8 @@
 
 [web-app-nodes]
-34.211.241.103
 
 [all:vars]
 ansible_user=ubuntu
-#ansible_ssh_private_key_file="{{ lookup('env','SSH_KEY') }}"
+ansible_ssh_private_key_file="{{ lookup('env','SSH_KEY') }}"
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+$ec2instance= "{{ cat output.txt }}"
