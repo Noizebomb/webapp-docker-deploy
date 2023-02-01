@@ -1,9 +1,8 @@
-- name: checkout repo to ec2
-  host: web-app-nodes
 
 - name: copy docker-compose file to ec2
+  host: web-app-nodes
   copy:
-    src: “{{ docker-compose.yml }}”
+    src: git@github.com:Noizebomb/webapp-docker-deploy.git
     dest: .
     owner: root
     mode: 664
@@ -11,4 +10,7 @@
    - docker-compose.yml
 
 - name: install docker-compose
+  run: sudo apt install docker-compose -y
 
+- name: run docker-compose
+  run: docker-compose up -d
