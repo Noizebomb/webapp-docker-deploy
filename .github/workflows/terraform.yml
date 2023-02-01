@@ -8,7 +8,7 @@ on:
 permissions:
   contents: read
 
-build:
+jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
