@@ -1,5 +1,5 @@
 name: deploy webapp
-on: push
+#on: push
 
 jobs:
   build:

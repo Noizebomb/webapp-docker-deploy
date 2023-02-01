@@ -1,7 +1,6 @@
 
 - name: copy docker-compose file to ec2
-  env:
-    - web-app-nodes
+  host: web-app-nodes
   copy:
     src: https://github.com/Noizebomb/webapp-docker-deploy/blob/6011c41071426f0db7ba08261c60380b35a20b03/docker-compose.yml
     dest: ~/
