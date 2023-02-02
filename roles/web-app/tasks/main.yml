@@ -8,5 +8,12 @@
   with_fileglob:
    - files/*
 
+- name: install docker-compose
+  apt:
+    name: docker-compose
+    state: latest
 
-
+- name: run docker-compose
+  command: docker-compose up -d
+  args:
+    chdir: /home/ubuntu/
