@@ -76,4 +76,4 @@ jobs:
       run: sudo apt install ansible -y
 
     - name: Run playbook
-      run: ansible-playbook -i dev.inventory --private-key key.pem playbook.yml -vvvv
+      run: ansible-playbook -i dev.inventory --private-key key.pem playbook.yml -vv
