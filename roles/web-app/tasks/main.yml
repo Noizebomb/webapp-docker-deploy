@@ -12,7 +12,7 @@
   apt:
     name: docker-compose
     state: latest
-  become: yes
+  become: true
 
 - name: run docker-compose
   command: docker-compose up -d
