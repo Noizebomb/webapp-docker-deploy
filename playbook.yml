@@ -1,6 +1,6 @@
 ---
 - name: Deploy Web App
-  hosts: web-app-nodes
+  hosts: all
   roles:
     - web-app
   tags: web-app
