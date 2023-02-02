@@ -44,7 +44,7 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false -no-color 
 
-    - name: Sleep for 30 seconds
+    - name: Sleep for 90 seconds
       run: sleep 90s
       shell: bash
 
@@ -67,4 +67,4 @@ jobs:
       run: sudo apt install ansible -y
 
     - name: Run playbook
-      run: ansible-playbook -i dev.inventory --private-key key.pem playbook.yml -vvvv
+      run: ansible-playbook -i dev.inventory --private-key ${{ secrets.SSH_KEY }} playbook.yml -vvvv
