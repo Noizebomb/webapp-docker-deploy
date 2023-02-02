@@ -44,9 +44,9 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false -no-color 
 
-    #- name: Sleep for 90 seconds
-     # run: sleep 90s
-      #shell: bash
+    - name: Sleep for 90 seconds
+      run: sleep 90s
+      shell: bash
 
     - name: Output as a variable
       run: terraform output -json EC2INSTANCE | jq -r '.[0]' >> output.txt
