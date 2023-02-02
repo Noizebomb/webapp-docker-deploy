@@ -49,7 +49,7 @@ jobs:
       shell: bash
 
     - name: Output as a variable
-      run: terraform output -json EC2INSTANCE | jq -r '.[0]' | >> output.txt
+      run: terraform output -json EC2INSTANCE | jq -r '.[0]' >> output.txt
 
     - name: Set IP address as environment variable
       run: |
