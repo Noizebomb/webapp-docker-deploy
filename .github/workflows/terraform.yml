@@ -67,4 +67,4 @@ jobs:
       run: sudo apt install ansible -y
 
     - name: Run playbook
-      run: ansible-playbook -i dev.inventory --private-key ${{ secrets.SSH_KEY }} playbook.yml -vvvv
+      run: ansible-playbook -i dev.inventory --private-key ~/.ssh/oregon-key.pem playbook.yml -vvvv
