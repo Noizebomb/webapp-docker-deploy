@@ -49,22 +49,31 @@ jobs:
       shell: bash
 
     - name: Output as a variable
-      run: terraform output -json EC2INSTANCE | jq -r '.[0]' | tee output.txt
+      run: terraform output -json EC2INSTANCE | jq -r '.[0]' >> dev.inventory
 
-    - name: Set IP address as environment variable
-      run: |
-            EC2INSTANCE=$(cat output.txt)
-            echo "EC2INSTANCE"=${EC2INSTANCE} >> $GITHUB_ENV
+   # - name: Set IP address as environment variable
+    #  run: |
+     #       EC2INSTANCE=$(cat dev.inventory)
+      #      echo "EC2INSTANCE"=${EC2INSTANCE} >> $GITHUB_ENV
 
-    - name: add IP adress to dev.inventory file
-      #run: cat output.txt >> dev.inventory
-      run: sed -i "2r output.txt" dev.inventory
+   # - name: add IP adress to dev.inventory file
+    #  #run: cat output.txt >> dev.inventory
+     # run: sed -i "2r output.txt" dev.inventory
 
     - name: test contents of dev.inventory
       run: cat dev.inventory
+
+    - name: save keyfile
+      run: 'echo "$SSH_KEY" > key.pem'
+      shell: bash
+      env:
+        SSH_KEY: ${{secrets.SSH_KEY}}
+
+    - name: change permissions
+      run: chmod 400 key.pem
 
     - name: install ansible
       run: sudo apt install ansible -y
 
     - name: Run playbook
-      run: ansible-playbook -i dev.inventory --private-key ~/.ssh/oregon-key.pem playbook.yml -vvvv
+      run: ansible-playbook -i dev.inventory --private-key key.pem playbook.yml -vvvv
